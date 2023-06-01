@@ -14,6 +14,18 @@ public class Calculator {
 		if(op.equals("+")) {
 			result = num1 + num2;
 		}
+		else if(op.equals("-")) {
+			result = num1 - num2;
+		}
+		else if(op.equals("x")) {
+			result = num1 * num2;
+		}
+		else if(op.equals("/")) {
+			result = num1 / num2;
+		}
+		else {
+			System.out.println("지원되지 않는 기능입니다.");
+		}
 		return result;
 	}
 
