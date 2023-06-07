@@ -42,10 +42,6 @@
 				</tr>
 			</table>
 		
-		
-		
-		
-		
 		</form>
 	</div>
 </body>

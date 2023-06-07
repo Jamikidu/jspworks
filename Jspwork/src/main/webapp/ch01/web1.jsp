@@ -19,7 +19,7 @@
 		DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
 		String current_time = now.format(datetime);
 		
-		//5초후 새로 고침
+		//5초후 새로 고침, 1로 바꾸면 1초마다 새로 고침
 		response.setIntHeader("Refresh", 1);
 	%>
 	<h3>현재 날짜와 시간은 <%= current_time %></h3>

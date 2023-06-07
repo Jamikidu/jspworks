@@ -17,8 +17,8 @@
 			userid.focus();
 			return false;
 		}
-		else if(passwd.value == "" || passwd.value.length > 5 ){
-			alert("비밀번호는 5자 이내로 입력해주세요.");
+		else if(passwd.value == "" || passwd.value.length < 5 ){
+			alert("비밀번호는 5자 이상 입력해주세요.");
 			passwd.focus();
 			return false;
 		}
