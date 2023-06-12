@@ -10,6 +10,13 @@
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
+<c:if test="${empty sessionId}">
+	<script>
+		alert("로그인이 필요합니다");
+		location.href = "/loginForm.do";
+	</script>
+</c:if>
+<jsp:include page="../header.jsp" />
 <div id="container">
 	<section id="memberlist">
    	<h2>회원 목록</h2>
@@ -26,7 +33,9 @@
 	   	 <tbody>
 	   		<c:forEach var="member" items="${memberList }">
 	   		<tr>
-	   			<td><c:out value="${member.memberId}" /> </td>
+	   			<td><a href="/memberView.do?memberId=${member.memberId}">
+	   				<c:out value="${member.memberId}" /></a>
+	   			</td>
 	   			<td><c:out value="${member.passwd}" /> </td>
 	   			<td><c:out value="${member.name}" /> </td>
 	   			<td><c:out value="${member.gender}" /> </td>
@@ -41,5 +50,6 @@
 	    </c:forEach> --%>
     </section>
     </div>
+    <jsp:include page="../footer.jsp" />
 </body>
 </html>
