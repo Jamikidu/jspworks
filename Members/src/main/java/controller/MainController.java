@@ -122,10 +122,14 @@ public class MainController extends HttpServlet {
     		  out.println("</script>");
     	  }
     	  
-      }else if(command.equals("/loginOut.do")) {
+      }else if(command.equals("/logout.do")) {	//로그아웃 요청
     	  //세션 모두 삭제(해제)
     	  session.invalidate();
     	  nextPage = "/index.jsp";
+      }else if(command.equals("/deleteMember.do")) {	//회원 삭제 요청
+    	  String memberId = request.getParameter("memberId");
+    	  memberDAO.deleteMember(memberId);	//회원 삭제 처리
+    	  nextPage = "/memberList.do";
       }
       
       //게시판 관리
@@ -136,12 +140,50 @@ public class MainController extends HttpServlet {
     	  request.setAttribute("boardList", boardList);
     	  
     	  nextPage = "/board/boardList.jsp";
+      }else if(command.equals("/boardForm.do")) {
+    	  
+    	  nextPage = "/board/boardForm.jsp";
+      }else if(command.equals("/addBoard.do")) {
+    	  //글쓰기 폼에 입력된 데이터 받아오기
+    	  String title = request.getParameter("title");
+    	  String content = request.getParameter("content");
+    	  //memberId 세션을 가져오기
+    	  String memberId = (String)session.getAttribute("sessionId");
+    	  
+    	  Board board = new Board();
+    	  board.setTitle(title);
+    	  board.setContent(content);
+    	  board.setMemberId(memberId);
+    	  
+    	  //글쓰기 처리 메서드 호출
+    	  boardDAO.addBoard(board);
+    	  
+      }else if(command.equals("/boardView.do")) {
+    	  int bnum = Integer.parseInt(request.getParameter("bnum"));
+    	  Board board = boardDAO.getBoard(bnum);	//글 상세보기 처리
+    	  
+    	  //모델 생성
+    	  request.setAttribute("board", board);
+    	  
+    	  nextPage = "/board/boardView.jsp";
+      }else if(command.equals("/deleteBoard.do")) {
+    	  int bnum = Integer.parseInt(request.getParameter("bnum"));
+    	  boardDAO.deleteBoard(bnum);
+    	  
+    	  nextPage = "/boardList.do";	//삭제 후 게시글 목록 이동
       }
       
       
       // 포워딩
-      RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-      dispatcher.forward(request, response);
+      if(command.equals("/addBoard.do")) {
+    	  response.sendRedirect("boardList.do");
+      }
+      else {
+    	  RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+          
+          dispatcher.forward(request, response);
+      }
+      
       
             
       

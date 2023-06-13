@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
          		</tr>
          		<tr>
          			<td><label>가입일</label></td>
-         			<td><input type="text" name="joinDate" value="${member.joinDate}" readonly></td>
+         			<td><fmt:formatDate value="${member.joinDate}" pattern="yyyy-MM-dd HH:mm:ss " /></td>
          		</tr>
          		<tr>
          			<td colspan="2">
