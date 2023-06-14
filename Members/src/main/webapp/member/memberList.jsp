@@ -51,8 +51,14 @@
 	    <%-- <c:forEach items="${memberList}" var="member" >
 	       <p>아이디: <c:out value="${member.memberId}"/> </p>
 	    </c:forEach> --%>
-    </section>
+	<div id="event">
+	<h3>이벤트 추첨 링크</h3>
+    <a href="/memberEvent.do"><img alt="브롱스사진" src="./resources/images/bronx.png"></a>
     </div>
+    </section>
+    
+    </div>
+    
     <jsp:include page="../footer.jsp" />
 </body>
 </html>

@@ -32,12 +32,12 @@
          			<td><label>성별</label></td>
          			<td>
          				<c:if test="${member.gender eq '남'}">
-         				<input type="radio" name="gender" value="남" checked>남
-         				<input type="radio" name="gender" value="여" >여
+         				<input type="radio" name="gender" value="남" checked onclick="return(false)">남
+         				<input type="radio" name="gender" value="여" onclick="return(false)">여
          				</c:if>
          				<c:if test="${member.gender eq '여'}">
-         				<input type="radio" name="gender" value="남" >남
-         				<input type="radio" name="gender" value="여" checked>여
+         				<input type="radio" name="gender" value="남" onclick="return(false)">남
+         				<input type="radio" name="gender" value="여" checked onclick="return(false)">여
          				</c:if>
          			</td>
          		</tr>

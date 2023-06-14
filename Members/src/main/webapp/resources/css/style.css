@@ -39,6 +39,7 @@ footer{height: 80px; border-top: 2px solid #222;}
 #memberlist table th, td{padding:10px 0; font-size:0.9em;}
 #memberlist table td button{width: 50px; height: 30px; background-color: red; color:black;}
 #memberlist table thead{background: #eee;}
+#memberlist #event{margin-top: 30px; text-align: center;}
 
 /* register */
 #register{width: 450px; margin: 30px auto 100px;}
@@ -62,6 +63,13 @@ footer{height: 80px; border-top: 2px solid #222;}
 #detail table input[type='text']{width:200px; padding: 5px; border:none;}
 #detail table input[type='password']{width:200px; padding: 5px; border:none;}
 #detail table td button{padding: 5px 10px;}
+
+/* memberEvent 스타일 */
+#memberEvent{width:500px; margin: 30px auto 100px; text-align: center;}
+#memberEvent .banner{margin: 40px auto;}
+#memberEvent button{padding: 10px 20px; font-size: 1em;}
+#memberEvent #display{display: none; width:320px; height:100px; background: skyblue; margin: 30px auto 100px; text-align: center; padding-top:60px;}
+
 
 /* login 스타일 */
 #login{width: 400px; margin: 30px auto 100px;}

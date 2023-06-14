@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 상세보기</title>
+<title>게시글 상세보기</title>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
@@ -31,7 +31,13 @@
         				<td>
         					<c:out value="글쓴이: ${board.memberId}" />
         						(작성일: <fmt:formatDate value="${board.regDate}" 
-		   						pattern="yyyy-MM-dd hh:mm:ss"  />)
+		   						pattern="yyyy-MM-dd HH:mm:ss" /> )
+		   					<br>
+		   					<!-- 게시글을 수정했다면 작성일+수정일 같이나옴 -->	
+		   					<c:if test="${board.modifyDate ne null}">
+	        					(수정일: <fmt:formatDate value="${board.modifyDate}" 
+			   					pattern="yyyy-MM-dd HH:mm:ss" />)
+	        				</c:if>
         				</td>
         			</tr>
         			<tr>
@@ -42,7 +48,9 @@
         			<tr>
         				<td>
         					<c:if test="${board.memberId == sessionId}">
+        						<a href="/updateBoard.do?bnum=${board.bnum}">
         						<button type="button">수정</button>
+        						</a>
 	        					<a href="/deleteBoard.do?bnum=${board.bnum}" onclick="return confirm('정말로 삭제하시겠습니까?')">
 	        						<button type="button">삭제</button>
 	        					</a>

@@ -131,6 +131,11 @@ public class MainController extends HttpServlet {
     	  memberDAO.deleteMember(memberId);	//회원 삭제 처리
     	  nextPage = "/memberList.do";
       }
+      //추첨사이트로 이동
+      else if(command.equals("/memberEvent.do")) {
+    	  
+    	  nextPage = "/member/memberEvent.jsp";
+      }
       
       //게시판 관리
       if(command.equals("/boardList.do")) {
@@ -171,6 +176,27 @@ public class MainController extends HttpServlet {
     	  boardDAO.deleteBoard(bnum);
     	  
     	  nextPage = "/boardList.do";	//삭제 후 게시글 목록 이동
+      }else if(command.equals("/updateBoard.do")) {
+    	  int bnum = Integer.parseInt(request.getParameter("bnum"));
+    	  
+    	  Board board = boardDAO.getBoard(bnum);	//게시글 상세 보기(수정 눌렀을때 데이터가 따라옴)
+    	  
+    	  request.setAttribute("board", board);
+    	  
+    	  nextPage = "/board/updateBoard.jsp";
+      }else if(command.equals("/updateProcess.do")) {
+    	  //수정 폼에서 입력 내용 받기
+    	  int bnum = Integer.parseInt(request.getParameter("bnum"));
+    	  String title = request.getParameter("title");
+    	  String content = request.getParameter("content");
+    	  
+    	  Board updateBoard = new Board();
+    	  updateBoard.setTitle(title);
+    	  updateBoard.setContent(content);
+    	  updateBoard.setBnum(bnum);
+    	  
+    	  boardDAO.updateBoard(updateBoard);	//수정처리
+    	  nextPage = "/boardList.do";
       }
       
       
