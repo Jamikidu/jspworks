@@ -22,7 +22,7 @@
          		</tr>
          		<tr>
          			<td><label>비밀번호</label></td>
-         			<td><input type="password" name="passwd" value="${member.passwd}" readonly></td>
+         			<td><input type="text" name="passwd" value="${member.passwd}" readonly></td>
          		</tr>
          		<tr>
          			<td><label>이름</label></td>
