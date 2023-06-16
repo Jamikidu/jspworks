@@ -37,7 +37,7 @@ public class MemberDAO {
    public ArrayList<Member> getMemberList () {
       ArrayList<Member> memberList = new ArrayList<>();
       conn = JDBCUtil.getConnection();
-      String sql = "select * from t_member order by joinDate desc";
+      String sql = "SELECT * FROM t_member ORDER BY joinDate DESC";
       try {
          pstmt = conn.prepareStatement(sql);
          rs=pstmt.executeQuery();
@@ -124,6 +124,29 @@ public class MemberDAO {
 		} finally {
 			JDBCUtil.close(conn, pstmt);
 		}
+   }
+   
+   //ID 중복 체크
+   public boolean duplicatedID(String memberId) {
+	   boolean result = false;
+	   conn = JDBCUtil.getConnection();
+	   	
+	   String sql = "SELECT DECODE(count(*), 1, 'true', 'false') AS result"
+	   		+ " FROM t_member WHERE memberid = ?";
+	   try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			rs = pstmt.executeQuery();	//db에서 삭제
+			if(rs.next()) {
+				result = rs.getBoolean("result");	//칼럼이 result인 값을 꺼내옴
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, pstmt, rs);
+		}
+	   
+	   return result;
    }
    
    
