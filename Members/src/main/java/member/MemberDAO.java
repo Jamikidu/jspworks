@@ -63,6 +63,8 @@ public class MemberDAO {
       return memberList;
    }
    
+   
+   
    //회원 상세보기(정보)
    public Member getMember(String memberId) {
 	   Member member = new Member();
