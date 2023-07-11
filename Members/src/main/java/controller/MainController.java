@@ -183,7 +183,7 @@ public class MainController extends HttpServlet {
     	  nextPage = "/board/boardForm.jsp";
       }else if(command.equals("/addBoard.do")) {
     	  
-    	  String realFolder = "C:/Users/Administrator/git/jspworks/Members/src/main/webapp/board/upload";
+    	  String realFolder = "C:/Users/Administrator/git/jspworks/Members/src/main/webapp/upload";
     	  
     	  MultipartRequest multi = new MultipartRequest(request, realFolder, 5*1024*1024, "utf-8", new DefaultFileRenamePolicy());
     	  
