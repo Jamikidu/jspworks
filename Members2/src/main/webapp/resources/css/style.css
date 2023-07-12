@@ -42,14 +42,15 @@ footer{height: 80px; border-top: 2px solid #222;}
 #memberlist #event{margin-top: 30px; text-align: center;}
 
 /* register */
-#register{width: 580px; margin: 30px auto 100px;}
+#register{width: 600px; margin: 30px auto 100px;}
 #register form{margin: 30px auto;}
 #register form fieldset{padding: 20px 0 30px 20px;}
 #register form ul li{margin: 30px 0px 30px 20px;}
 #register form label{width: 120px; float: left; margin-right: 10px;}
 #register form input[type='text']{width: 280px; height: 25px; font-size: 0.8em;}
 #register form input[type='password']{width: 280px; height: 25px; font-size: 0.8em;}
-#register form li label.radio{width: 60px;}
+#register form li label.radio{width: 90px;}
+#register form li label.radio input{margin-right: 5px;}
 #register form .button{width: 550px; height: 50px; text-align: center;}
 #register form input[type='button']{width: 80px; height: 40px; margin-top: 30px;}
 #register form input[type='reset']{width: 80px; height: 40px; margin: 30px;}
@@ -73,6 +74,7 @@ footer{height: 80px; border-top: 2px solid #222;}
 
 
 /* login 스타일 */
+.language{text-align: right;}
 #login{width: 400px; margin: 30px auto 100px;}
 #login form{margin:30px auto;}
 #login .error{color: #f00; margin-bottom: 10px;}
