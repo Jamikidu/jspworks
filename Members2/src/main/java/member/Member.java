@@ -1,6 +1,7 @@
 package member;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Member implements Serializable{
@@ -12,7 +13,7 @@ public class Member implements Serializable{
 	private String passwd;
 	private String name;
 	private String gender;
-	private Date joinDate;
+	private Timestamp joinDate;
 	
 	//생성자
 	public Member() {}
@@ -41,12 +42,15 @@ public class Member implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public Date getJoinDate() {
+
+	public Timestamp getJoinDate() {
 		return joinDate;
 	}
-	public void setJoinDate(Date joinDate) {
+
+	public void setJoinDate(Timestamp joinDate) {
 		this.joinDate = joinDate;
 	}
+	
 	
 	
 	

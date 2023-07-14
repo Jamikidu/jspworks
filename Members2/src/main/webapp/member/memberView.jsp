@@ -18,15 +18,18 @@
          	<tbody>
          		<tr>
          			<td><label>아이디</label></td>
-         			<td><input type="text" name="memberId" value="${member.memberId}" readonly></td>
+         			<%-- <td><input type="text" name="memberId" value="${member.memberId}" readonly></td> --%>
+         			<td><span>${member.memberId}</span></td>
          		</tr>
          		<tr>
          			<td><label>비밀번호</label></td>
-         			<td><input type="text" name="passwd" value="${member.passwd}" readonly></td>
+         			<%-- <td><input type="text" name="passwd" value="${member.passwd}"></td> --%>
+         			<td><span>${member.passwd}</span></td>
          		</tr>
          		<tr>
          			<td><label>이름</label></td>
-         			<td><input type="text" name="name" value="${member.name}" readonly></td>
+         			<%-- <td><input type="text" name="name" value="${member.name}" readonly></td> --%>
+         			<td><span>${member.name}</span></td>
          		</tr>
          		<tr>
          			<td><label>성별</label></td>
@@ -48,6 +51,9 @@
          		<tr>
          			<td colspan="2">
          				<a href="/memberList.do"><button type="button">목록으로</button></a>
+         				<a href="/memberUpdateForm.do?memberId=${member.memberId}"><button type="button">수정</button></a>
+         				<a href="/deleteMember.do?memberId=${member.memberId}" onclick="return confirm('정말로 탈퇴하시겠습니까?')">
+         				<button type="button">탈퇴</button></a>
          			</td>
          		</tr>
          	</tbody>
