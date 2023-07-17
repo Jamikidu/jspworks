@@ -55,10 +55,6 @@ public class MainController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String command = uri.substring(uri.lastIndexOf('/'));
 
-		System.out.println(uri);
-		System.out.println();
-		System.out.println(uri.lastIndexOf('/'));
-		System.out.println("command: " + command);
 
 		String nextPage = null;
 
