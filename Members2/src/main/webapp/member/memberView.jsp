@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>회원 정보</title>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>

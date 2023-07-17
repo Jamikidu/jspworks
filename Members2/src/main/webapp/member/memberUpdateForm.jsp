@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,6 @@
 		let pw1 = form.passwd1.value;
 		let pw2 = form.passwd2.value;
 		let name = form.name.value;
-		let btnChk = form.btnChk.value;	//'Y' or 'N'
 		
 		//정규표현식
 		let pw_pat1 = /[0-9]+/	//숫자만
@@ -75,10 +75,7 @@
 			alert("이름은 한글과 영어만 가능합니다.(자음,모음 X)");
 			form.name.focus();
 			return false;
-		} else if(btnChk == 'N'){
-			alert("아이디 중복을 확인해 주세요.");
-			return false;
-		}
+		} 
 			
 		else{
 			form.submit();
@@ -91,24 +88,24 @@
 </head>
 <body>
 	<!-- 다국어 Locale 설정 -->
-	<fmt:setLocale value="${param.language}" />
+	<fmt:setLocale value="${language}" />
 	<fmt:bundle basename="bundle.message">
 
 		<jsp:include page="../header.jsp" />
 		<div id="container">
 			<section id="register">
 				<div class="language">
-					<a href="?language=ko">한국어</a> | <a href="?language=en">English</a>
+					<a href="/memberUpdateForm.do?memberId=${member.memberId}&language=ko">한국어</a> | 
+					<a href="/memberUpdateForm.do?memberId=${member.memberId}&language=en">English</a>
 				</div>
-				<h2><%-- <fmt:message key="signup.title" /> --%>회원 수정</h2>
+				<h2><fmt:message key="signup.title2" /></h2>
 				<form action="/updateMember.do" method="post" name="member">
 					<fieldset>
 						<ul>
 							<li><label for="memberId"><fmt:message key="signup.id" /></label> <input type="text"
 								id="memberId" name="memberId"
-								value="${member.memberId}">
-								<button type="button" onclick="checkID()" id="btnChk" value="N"
-									class="btn_check"><fmt:message key="signup.idcheck" /></button>
+								value="${member.memberId}" readonly>
+								
 								<p id="check"></p></li>
 							<li><label for="passwd1"><fmt:message key="signup.passwd1" /></label> <input type="password"
 								id="passwd1" name="passwd1"
@@ -119,15 +116,25 @@
 							<li><label for="name"><fmt:message key="signup.name" /></label> <input type="text"
 								id="name" name="name" value="${member.name}">
 							</li>
-							<li><label for="gender"><fmt:message key="signup.gender" /></label> <label class="radio">
-									<input type="radio" name="gender" value="남" checked><fmt:message key="signup.man" />
-							</label> <label class="radio"> <input type="radio" name="gender"
-									value="여"><fmt:message key="signup.woman" />
-							</label></li>
+							<li>
+							<label for="gender"><fmt:message key="signup.gender" /></label>
+							<c:if test="${member.gender eq '남'}">
+								<label class="radio">
+								<input type="radio" name="gender" value="남" checked><fmt:message key="signup.man" />
+								<input type="radio" name="gender" value="여"><fmt:message key="signup.woman" />
+								</label>
+							</c:if>
+							<c:if test="${member.gender eq '여'}">
+								<label class="radio">
+								<input type="radio" name="gender" value="남"><fmt:message key="signup.man" />
+								<input type="radio" name="gender" value="여" checked><fmt:message key="signup.woman" />
+								</label>
+							</c:if>
+							</li>
 						</ul>
 					</fieldset>
 					<div class="button">
-						<input type="button" value="<fmt:message key='signup.join' />" onclick="checkMember()">
+						<input type="button" value="<fmt:message key='signup.save' />" onclick="checkMember()">
 						<input type="reset" value="<fmt:message key='signup.cancel' />">
 					</div>
 				</form>
