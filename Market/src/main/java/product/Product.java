@@ -14,8 +14,8 @@ public class Product implements Serializable{
 		private String category;	//분류
 		private long unitsInStock;	//재고수
 		private String condition;	//신상품 or 중고품
-		private String productImage;//
-		private int quantity;
+		private String productImage;//상품 사진
+		private int quantity;		//장바구니에 담은 개수
 		
 		public String getProductId() {
 			return productId;
