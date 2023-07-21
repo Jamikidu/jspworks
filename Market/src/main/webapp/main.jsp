@@ -13,7 +13,7 @@
 	<div class="container my-3">
 		<h2>Green Market에 오신 걸 환영합니다.</h2>
 		<div class="card mb-3">
-			<img src="resources/images/shoppingmall.jpg" class="card-img-top" alt="쇼핑몰">
+			<img src="resources/images/shoppingmall.jpg" class="card-img-top" alt="쇼핑몰" style="width: 100%;">
 			<div class="card-body">
 				<h5 class="card-title">(똑똑똑) 누구세요?</h5>
 				<p class="card-text">사랑해요~</p>

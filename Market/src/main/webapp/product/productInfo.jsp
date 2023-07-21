@@ -23,8 +23,7 @@
 	<jsp:include page="../header.jsp" />
 	<div class="container my-4">
 		<h3 class="text-left mx-4 my-4">상품 정보</h3>
-		<div class="row" align="center" style="background-color: beige;">
-		<div class="row mx-5" align="center">
+		<div class="row mx-5" align="center" style="background-color: beige;">
 			<div class="col-5">
 				<img src="./upload/${product.productImage}" style="width: 100%">
 			</div>
@@ -40,11 +39,10 @@
 						<a href="#" onclick="addToCart()" class="btn btn-info">상품 주문</a>
 						<a href="/cart.do" class="btn btn-warning">장바구니</a>
 						<a href="/productList.do"
-						   class="btn btn-secondary">상세 목록 &raquo;</a>
+						   class="btn btn-secondary">상품 목록 &raquo;</a>
 					</form>
 			</div>
 		</div>
 		</div>
-	</div>
 </body>
 </html>
