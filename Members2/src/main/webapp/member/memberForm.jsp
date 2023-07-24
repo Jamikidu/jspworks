@@ -15,7 +15,7 @@
 	function checkID(){
 		//alert("test");
 		let memberId = $('#memberId').val();
-		if(memberId === ""){
+		if(memberId == ""){
 			alert("아이디를 입력해주세요");
 			return false;
 		}
@@ -43,8 +43,9 @@
 		});
 		
 	}
+	//checkId 끝!
 	
-	function checkMember(){
+	/* function checkMember(){
 		//alert("test");
 		let form = document.member;
 		let id = form.memberId.value;
@@ -85,7 +86,7 @@
 			
 		}
 		
-	}
+	} */
 
 </script>
 </head>

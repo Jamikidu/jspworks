@@ -20,17 +20,21 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import member.Member;
+import member.MemberDAO;
 import product.Product;
 import product.ProductDAO;
 
 @WebServlet("*.do")
-public class ProductController extends HttpServlet {
+public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ProductDAO productDAO;
+	private MemberDAO memberDAO;
 
 	public void init(ServletConfig config) throws ServletException {
 		productDAO = new ProductDAO();
+		memberDAO = new MemberDAO();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -428,7 +432,94 @@ public class ProductController extends HttpServlet {
 		else if(command.equals("/checkOutCancel.do")) {
 			
 			nextPage = "/product/checkOutCancel.jsp";
+		}	//상품 controller
+		
+		//회원 controller
+		if(command.equals("/memberList.do")) {  // 회원 목록
+			List<Member> memberList = memberDAO.getMemberList();
+			request.setAttribute("memberList", memberList);	 //모델 생성
+			nextPage = "/member/memberList.jsp";
 		}
+		else if(command.equals("/memberInfo.do")) {  // 회원 정보
+			String mid = request.getParameter("mid");
+			Member member = memberDAO.getMember(mid);
+			request.setAttribute("member", member);
+			
+			nextPage = "/member/memberInfo.jsp";
+		}
+		else if(command.equals("/memberForm.do")) {  // 회원 가입 페이지 요청
+			
+			nextPage = "/member/memberForm.jsp";
+		}
+		else if(command.equals("/addMember.do")) {  // 회원 가입 페이지 요청
+			//회원 가입 폼 데이터 받기
+			String mid = request.getParameter("mid");
+			String passwd = request.getParameter("passwd1");
+			String mname = request.getParameter("mname");
+			String gender = request.getParameter("gender");
+			//birth
+			String birthyy = request.getParameter("birthyy");
+			String birthmm = request.getParameterValues("birthmm")[0];
+			String birthdd = request.getParameter("birthdd");
+			String birth = birthyy + "/" + birthmm + "/" + birthdd;
+			String phone = request.getParameter("phone");
+			
+			//email
+			String email1 = request.getParameter("email1");
+			String email2 = request.getParameter("email2");
+			String email = email1 + "@" + email2;
+			
+			String address = request.getParameter("address");
+			
+			//Member 객체 생성
+			Member newMember = new Member();
+			newMember.setMid(mid);
+			newMember.setPasswd(passwd);
+			newMember.setMname(mname);
+			newMember.setGender(gender);
+			newMember.setBirth(birth);
+			newMember.setPhone(phone);
+			newMember.setEmail(email);
+			newMember.setAddress(address);
+			
+			// dao의 addMember() 함수 호출
+			memberDAO.addMember(newMember);
+			
+			session.setAttribute("sessionId", mid);  // 자동로그인
+			
+			nextPage = "/index.jsp";
+		}
+		else if(command.equals("/loginForm.do")) {  // 회원가입 요청
+			
+			nextPage = "/member/loginForm.jsp";
+		}
+		else if(command.equals("/processLogin.do")) {  // 로그인 요청
+			//로그인 폼에 입력된 데이터 받기
+			String mid= request.getParameter("mid");
+			String passwd = request.getParameter("passwd");
+			
+			//로그인할 member 객체 생성
+			Member loginMember = new Member();
+			loginMember.setMid(mid);
+			loginMember.setPasswd(passwd);
+			
+			//DAO의 checkLogin(member) 호출
+			boolean result = memberDAO.checkLogin(loginMember);
+			if(result) {
+				session.setAttribute("sessionId", mid);  // 아이디로 세션 발급
+				nextPage = "index.jsp";
+			}else {
+				String error = "아이디나 비밀번호를 확인해주세요";
+				request.setAttribute("error", error);
+				nextPage = "/loginForm.do";
+			}
+			
+		}
+		else if(command.equals("/logout.do")) {  // 로그아웃 요청
+			session.invalidate();
+			nextPage = "/index.jsp";
+		}
+		
 		
 		// 페이지 포워딩
 		if(command.equals("/addCart.do")) {	//상품 주문 요청

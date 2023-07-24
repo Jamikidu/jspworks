@@ -17,7 +17,6 @@
 		</auth-constraint>
 	</security-constraint>  	
 	
-	
 	<!-- 사용자 폼 기반 인증 -->
 	<login-config>
 		<auth-method>FORM</auth-method>
@@ -26,4 +25,24 @@
 			<form-error-page>/security/loginFailed.jsp</form-error-page>	
 		</form-login-config>
 	</login-config>
+	
+	<!-- 404(페이지가 없을때), 500(코드 오류) -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/errorPage.jsp</location>
+	</error-page>
+	
+<welcome-file-list>
+   <welcome-file>index.html</welcome-file>
+   <welcome-file>index.jsp</welcome-file>
+   <welcome-file>index.htm</welcome-file>
+   <welcome-file>default.html</welcome-file>
+   <welcome-file>default.jsp</welcome-file>
+   <welcome-file>default.htm</welcome-file>
+</welcome-file-list>
+	
 </web-app>

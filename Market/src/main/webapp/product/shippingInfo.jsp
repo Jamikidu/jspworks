@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>배송 정보</title>
-<link rel="stylesheet" href="resources/css/bootstrap.css">
 <script src="resources/js/bootstrap.js"></script>
 </head>
 <body>
